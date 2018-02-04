@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 
-# Released to the public domain.
-# http://creativecommons.org/publicdomain/zero/1.0/
-
+# The code in this file is originally from: https://github.com/sid0/iconrefresher/tree/4a048e9252a7e4f95a2eab892311ba25a5207626
+# The code was originally [released to the public
+# domain](http://creativecommons.org/publicdomain/zero/1.0/) and has been
+# relicensed as part of the sci-bots/winreg-helpers project under the terms of
+# the BSD 3-clause license.
+#
+# See https://github.com/sci-bots/winreg-helpers/blob/master/LICENSE.md
 import ctypes
 from ctypes import wintypes
 
