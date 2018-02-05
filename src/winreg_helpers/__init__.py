@@ -94,7 +94,7 @@ def register_fileclass(name, details, all_users=False, description=None,
         Overwrite existing fileclass.
 
 
-    .. versionchanged:: X.X.X
+    .. versionchanged:: 0.1.1
         Fix: set value of fileclass key to specified description.
     '''
     root_name = 'HKEY_CURRENT_USER' if not all_users else 'HKEY_CLASSES_ROOT'
