@@ -4,7 +4,11 @@ try:
 except ImportError:
     import _winreg as winreg
 
-from refresh_icons import refresh_icons
+from .refresh_icons import refresh_icons
+from ._version import get_versions
+
+__version__ = get_versions()['version']
+del get_versions
 
 
 __all__ = ['refresh_icons', 'delete_tree', 'get_class', 'register_fileclass',
@@ -88,6 +92,10 @@ def register_fileclass(name, details, all_users=False, description=None,
         Fileclass description.
     overwrite : bool, optional
         Overwrite existing fileclass.
+
+
+    .. versionchanged:: 0.1.1
+        Fix: set value of fileclass key to specified description.
     '''
     root_name = 'HKEY_CURRENT_USER' if not all_users else 'HKEY_CLASSES_ROOT'
     root_key = getattr(winreg, root_name)
@@ -109,6 +117,8 @@ def register_fileclass(name, details, all_users=False, description=None,
     logging.debug('Create fileclass key for `%s\%s`', root_name,
                   fileclass_path)
     fileclass_key = winreg.CreateKey(root_key, fileclass_path)
+    if description is not None:
+        winreg.SetValue(root_key, fileclass_path, winreg.REG_SZ, description)
 
     for name_i, value_i in details.iteritems():
         if value_i is not None:
@@ -207,7 +217,3 @@ def unregister_extension(name, all_users=False, with_fileclass=True):
         except WindowsError:
             pass
     delete_class(name, all_users=all_users)
-
-from ._version import get_versions
-__version__ = get_versions()['version']
-del get_versions

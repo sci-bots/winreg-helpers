@@ -29,6 +29,13 @@ Contributors
  - Christian Fobel ([@sci-bots](https://github.com/sci-bots))
 
 
+Credits
+-------
+
+Windows icon refreshing code was incorporated from [sid0/iconrefresher][4].
+
+
 [1]: https://github.com/sci-bots/winreg-helpers
 [2]: https://conda.io/docs/
 [3]: https://anaconda.org/sci-bots
+[4]: https://github.com/sid0/iconrefresher
