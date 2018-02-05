@@ -92,6 +92,10 @@ def register_fileclass(name, details, all_users=False, description=None,
         Fileclass description.
     overwrite : bool, optional
         Overwrite existing fileclass.
+
+
+    .. versionchanged:: X.X.X
+        Fix: set value of fileclass key to specified description.
     '''
     root_name = 'HKEY_CURRENT_USER' if not all_users else 'HKEY_CLASSES_ROOT'
     root_key = getattr(winreg, root_name)
@@ -113,6 +117,8 @@ def register_fileclass(name, details, all_users=False, description=None,
     logging.debug('Create fileclass key for `%s\%s`', root_name,
                   fileclass_path)
     fileclass_key = winreg.CreateKey(root_key, fileclass_path)
+    if description is not None:
+        winreg.SetValue(root_key, fileclass_path, winreg.REG_SZ, description)
 
     for name_i, value_i in details.iteritems():
         if value_i is not None:
