@@ -4,7 +4,11 @@ try:
 except ImportError:
     import _winreg as winreg
 
-from refresh_icons import refresh_icons
+from .refresh_icons import refresh_icons
+from ._version import get_versions
+
+__version__ = get_versions()['version']
+del get_versions
 
 
 __all__ = ['refresh_icons', 'delete_tree', 'get_class', 'register_fileclass',
@@ -207,7 +211,3 @@ def unregister_extension(name, all_users=False, with_fileclass=True):
         except WindowsError:
             pass
     delete_class(name, all_users=all_users)
-
-from ._version import get_versions
-__version__ = get_versions()['version']
-del get_versions
